@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B1D3D50-81F4-4F75-97EC-4CB692606E64}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cosmoser.PingAnMeetingRequest.Common</RootNamespace>
+    <AssemblyName>Cosmoser.PingAnMeetingRequest.Common</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientService\ClientServiceFactory.cs" />
+    <Compile Include="ClientService\DataTransform.cs" />
+    <Compile Include="ClientService\RestXMLApiClient.cs" />
+    <Compile Include="ClientService\RestXmlClientService.cs" />
+    <Compile Include="Interfaces\IConferenceHandler.cs" />
+    <Compile Include="Model\SearchRoomListQuery.cs" />
+    <Compile Include="Model\HandlerSession.cs" />
+    <Compile Include="Model\LeaderType.cs" />
+    <Compile Include="Model\MeetingData.cs" />
+    <Compile Include="Model\MeetingLeader.cs" />
+    <Compile Include="Model\MeetingListQuery.cs" />
+    <Compile Include="Model\MeetingParameter.cs" />
+    <Compile Include="Model\MeetingRoom.cs" />
+    <Compile Include="Model\MeetingRoomListQuery.cs" />
+    <Compile Include="Model\MeetingScheduler.cs" />
+    <Compile Include="Model\MeetingSchedulerQuery.cs" />
+    <Compile Include="Model\MeetingSeries.cs" />
+    <Compile Include="Model\MeetingStatus.cs" />
+    <Compile Include="Model\MobileTerm.cs" />
+    <Compile Include="Model\RegionCatagory.cs" />
+    <Compile Include="Model\RegionCatagoryQuery.cs" />
+    <Compile Include="Model\RegionInfo.cs" />
+    <Compile Include="Model\RoomCategory.cs" />
+    <Compile Include="Model\RoomLevel.cs" />
+    <Compile Include="Model\SVCMMeeting.cs" />
+    <Compile Include="Model\SVCMMeetingDetail.cs" />
+    <Compile Include="Model\SvcmUser.cs" />
+    <Compile Include="Model\UserType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+      <script>
+          function login() {
+              var obj = document.getElementById("ActiveObj"); //获得组件实例
+              //调用组件内部的函数
+              //alert(obj.Test());
+              var ok = obj.Login("zhangxue016", "123", "192.168.0.46", "7080");
+              alert(ok);
+          }
+
+          function test() {
+              var obj = document.getElementById("ActiveObj");//获得组件实例
+                 //调用组件内部的函数
+              //alert(obj.Test());
+
+              var meeting = obj.BookMeeting("ocxTest1", "2015-08-19 08:00:00", "2015-08-19 09:00:00", "23", "这是一个ocx测试会议");
+              alert(meeting);
+              
+          }
+    </script>
+</head>
+<body> 
+    <div style="display:none;"><object  id="ActiveObj" classid="clsid:774EB7BE-CFAB-4870-870C-919893780F9E" Width="500" Height="400" ></object></div>
+    <input id="Button2" type="button" value="Login" onclick="login();" />
+    <input id="Button1" type="button" value="button" onclick="test();" />
+</body>
+</html>

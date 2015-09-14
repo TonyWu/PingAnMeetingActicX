@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+    <title id="title">ActiveX 控件功能演示</title>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        html, body
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .form-horizontal .control-group
+        {
+            margin-bottom: 16px;
+        }
+        .wrap
+        {
+            height: 100%;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            overflow: auto;
+        }
+        .main
+        {
+            width: 600px;
+        }
+        .info
+        {
+            margin-bottom: 20px;
+            font-size: 21px;
+            line-height: 40px;
+            color: #333;
+            border: 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div style="display:none;"><object  id="ActiveObj" classid="clsid:774EB7BE-CFAB-4870-870C-919893780F9E" codebase="PingAnMeetingActiveX.cab#version=1,0,1,0" Width="500" Height="400" ></object></div>
+    <div class="wrap">
+        <form class="main form-horizontal" onsubmit="return check()" action="main/active"
+        onsubmit="return check();">
+        <fieldset>
+            <legend>用户登录</legend>
+            <div class="control-group">
+                <label class="control-label">
+                    用户名</label>
+                <div class="controls">
+                    <input id="txtUsername" name="name" type="text" placeholder="必填项" class="input-xlarge"
+                        required value="zhangxue016">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    密码</label>
+                <div class="controls">
+                    <input id="txtPassword" name="pwd" type="password" placeholder="可选项" class="input-xlarge"
+                        required onchange="checkPasswords()" value="123">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    IP地址</label>
+                <div class="controls">
+                    <input id="txtIP" name="ip" type="text" placeholder="必填项" class="input-xlarge"
+                        required value="192.168.0.46">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    端口号</label>
+                <div class="controls">
+                    <input id="txtPort" type="text" placeholder="填数字，默认为80" class="input-xlarge" required value="7080">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                </label>
+                <div class="controls">
+                    <button class="btn" type="button" id="btnLogin" onclick="login();">
+                        登录</button>   
+                    <label id="lblLogin">
+                    </label>                 
+                </div>
+            </div>
+            <legend>预约会议</legend>
+            <div class="control-group">
+                <label class="control-label">
+                    会议ID</label>
+                <div class="controls">
+                    <input id="txtMeetingId" name="id" type="text" class="input-xlarge" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    会议名称</label>
+                <div class="controls">
+                    <input id="txtMeetingName" name="name" type="text" placeholder="必填项，会议名称" class="input-xlarge" required value="ocxTest1"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    开始时间</label>
+                <div class="controls">
+                    <input id="txtStartTime" type="text" placeholder="时间格式 yyyy-MM-dd HH:mm:ss" class="input-xlarge" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">
+                    结束时间</label>
+                <div class="controls">
+                    <input id="txtEndTime" type="text" placeholder="时间格式 yyyy-MM-dd HH:mm:ss" class="input-xlarge" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    会议室短号</label>
+                <div class="controls">
+                    <input id="txtAlias" type="text" placeholder="可选项" class="input-xlarge" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    会议备注</label>
+                <div class="controls">
+                    <input id="txtMemo" type="text" placeholder="可选项" class="input-xlarge" value="ocxTest1 测试">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                </label>
+                <div class="controls">
+                    <button class="btn" type="button" id="ok" onclick="BookMeeting();">
+                        预约会议</button>
+                    <button class="btn" type="button" onclick="EndMeeting();">
+                        结束会议</button>
+                    <button class="btn" type="button" onclick="DeleteMeeting();">
+                        删除会议</button>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    <script>
+        function checkPasswords() {
+            var passl = document.getElementById("pwd");
+            var pass2 = document.getElementById("pwd1");
+            if (passl.value != pass2.value)
+                passl.setCustomValidity("两次密码必须输入一致！");
+            else
+                passl.setCustomValidity('');
+        }
+
+        function check() {
+            document.getElementById('ok').disabled = 'disabled';
+        }
+
+       
+
+        function login() {
+
+            var user = document.getElementById("txtUsername").value;
+            var pwd = document.getElementById("txtPassword").value;
+            var Ip = document.getElementById("txtIP").value;
+            var port = document.getElementById("txtPort").value;
+            var obj = document.getElementById("ActiveObj");
+            var json = obj.Login(user, pwd, Ip, port);
+            jsonObj = eval('(' + json + ')');
+            if (jsonObj.Result == true) {
+                var label = document.getElementById("lblLogin");
+                label.innerText = "登录成功!" + "Token:" + jsonObj.Token;
+
+                var date = new Date();
+
+                document.getElementById("txtStartTime").value = date.getFullYear().toString() + "-" + (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + " " + date.getHours().toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString();
+                document.getElementById("txtEndTime").value = date.getFullYear().toString() + "-" + (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + " " + (date.getHours() + 1).toString() + ":" + date.getMinutes().toString() + ":" + date.getSeconds().toString();
+            }
+            else {
+                var label = document.getElementById("lblLogin");
+                label.innerText = "登录失败";
+            }
+           // $("#id").html("登录成功"); 
+        }
+
+        function BookMeeting() {
+            var meetingName = document.getElementById("txtMeetingName").value;
+            var startTime = document.getElementById("txtStartTime").value;
+            var endTime = document.getElementById("txtEndTime").value;
+            var memo = document.getElementById("txtMemo").value;
+            var obj = document.getElementById("ActiveObj");
+            var alias = document.getElementById("txtAlias").value
+
+            var json = obj.BookMeeting(meetingName, startTime, endTime, alias, memo);
+            alert(json);
+            jsonObj = eval('(' + json + ')');
+            if (jsonObj.Result == true) {
+
+                document.getElementById("txtMeetingId").value = jsonObj.MeetingId;
+            }
+            else {
+                document.getElementById("txtMeetingId").value = jsonObj.Error;
+
+            }
+        }
+
+        function EndMeeting() {
+            var meetingId = document.getElementById("txtMeetingId").value;
+            var obj = document.getElementById("ActiveObj");
+
+            var json = obj.EndMeeting(meetingId);
+            alert(json);
+            jsonObj = eval('(' + json + ')');
+            if (jsonObj.Result == true) {
+
+                document.getElementById("txtMeetingId").value = meetingId + " 操作成功";
+            }
+            else {
+                document.getElementById("txtMeetingId").value = meetingId + " 操作失败：" + jsonObj.Error;
+
+            }
+        }
+
+        function DeleteMeeting() {
+            var meetingId = document.getElementById("txtMeetingId").value;
+            var obj = document.getElementById("ActiveObj");
+
+            var json = obj.DeleteMeeting(meetingId);
+            alert(json);
+            jsonObj = eval('(' + json + ')');
+            if (jsonObj.Result == true) {
+
+                document.getElementById("txtMeetingId").value = meetingId + " 操作成功";
+            }
+            else {
+                document.getElementById("txtMeetingId").value = meetingId + " 操作失败：" + jsonObj.Error;
+
+            }
+        }
+    </script>
+</body>
+</html>
