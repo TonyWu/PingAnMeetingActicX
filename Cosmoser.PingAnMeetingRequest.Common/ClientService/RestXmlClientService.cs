@@ -853,5 +853,164 @@ namespace Cosmoser.PingAnMeetingRequest.Common.ClientService
 
             return false;
         }
+
+        public bool AudioControl(int meetingId, string alias, string ip, bool isMute, HandlerSession session, out string error)
+        {
+            error = string.Empty;
+            try
+            {
+                session.AddMessageId();
+                string xmlData = string.Format("<?xml version=\"1.0\" encoding=\"utf-8\"?><AudioCtrl><messageId>{0}</messageId><token>{1}</token><confId>{2}</confId><alias>{3}</alias><mute>{4}</mute><ip>{5}</ip></AudioCtrl>", session.MessageId, session.Token, meetingId, alias, isMute ? 1 : 0, ip);
+                var response = this._client.DoHttpWebRequest(session.BaseUrl + "AudioCtrl", xmlData);
+                XmlNode root = response.SelectSingleNode("AudioCtrl");
+                string status = root.SelectSingleNode("result").InnerText;
+
+                if (status == "200")
+                {
+                    return true;
+                }
+                else
+                {
+                    error = response.SelectSingleNode("AudioCtrl").SelectSingleNode("result").Attributes["property"].Value;
+                    this.ReLogin(session, response.SelectSingleNode("AudioCtrl").SelectSingleNode("result"));
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Login(ref session);
+            }
+
+            return false;
+        }
+
+        public bool VTXConfiguration(string IP, int Port, string serverIp, int serverPort, string sipname, string sippassword, int height, int width, int pos_x, int pos_y, string displayname, out string error)
+        {
+            error = string.Empty;
+            StringBuilder sbXml = new StringBuilder();
+            sbXml.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            sbXml.AppendLine(@"<VTX>
+                                  <cmd_id>0</cmd_id>
+                                  <cmd_type>vtx_configuration</cmd_type>
+                                  <values>
+                                    <serverip>{0}</serverip>
+                                    <protocol>UDP</protocol>
+                                    <servertype>standard</servertype>
+                                    <sipname>{1}</sipname>
+                                    <domain>{1}</domain>
+                                    <authorname>{1}</authorname>
+                                    <sippassword>{2}</sippassword>
+                                    <cred></cred>
+                                    <regid>{1}@{0}：{3}</regid>
+                                    <displayname>{4}</displayname>
+                                    <width>{5}</width>
+                                    <height>{6}</height>
+                                    <pos_x>{7}</pos_x>
+                                    <pos_y>{8}</pos_y>
+                                  </values>
+                                </VTX>");
+            try
+            {
+                string xmlData = string.Format(sbXml.ToString(), serverIp, sipname, sippassword, serverPort, displayname, height, width, pos_x, pos_y);
+                var response = this._client.DoHttpWebRequest(string.Format("http://{0}:{1}/vtx/configuration.do",IP,Port), xmlData);
+                XmlNode root = response.SelectSingleNode("VTX");
+                string status = root.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+
+                if (status == "200")
+                {
+                    return true;
+                }
+                else
+                {
+                    error = "ErrorCode:" + response.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+
+            return false;
+        }
+
+        public bool VTXInit(string IP, int Port, string logLevel,out string error)
+        {
+            error = string.Empty;
+            StringBuilder sbXml = new StringBuilder();
+            sbXml.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            sbXml.AppendLine(@"<VTX>
+                                <cmd_id>1</cmd_id>
+                                <cmd_type>vtx_init</cmd_type>
+                                <values>
+                                <devices>
+                                    <video>-1</video>
+                                    <audio>-1</audio>
+                                </devices>
+                                <loglevel>{0}</loglevel>
+                                </values>
+                              </VTX>");
+            try
+            {
+                string xmlData = string.Format(sbXml.ToString(), logLevel);
+                var response = this._client.DoHttpWebRequest(string.Format("http://{0}:{1}/vtx/init.do", IP, Port), xmlData);
+                XmlNode root = response.SelectSingleNode("VTX");
+                string status = root.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+
+                if (status == "200")
+                {
+                    return true;
+                }
+                else
+                {
+                    error = "ErrorCode:" + response.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+
+            return false;
+        }
+
+        public bool VTXChangeVol(string IP, int Port, bool plusAction, out string error)
+        {
+            error = string.Empty;
+            StringBuilder sbXml = new StringBuilder();
+            sbXml.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            sbXml.AppendLine(@"<VTX>
+	                            <cmd_id>2</cmd_id>							
+	                            <cmd_type>vtx_chgvol</cmd_type>				
+	                            <values>
+		                            <volume>{0}</volume>
+	                            </values>
+                              </VTX>");
+            try
+            {
+                string xmlData = string.Format(sbXml.ToString(), plusAction ? "50" : "-50");
+                var response = this._client.DoHttpWebRequest(string.Format("http://{0}:{1}/vtx/chgvol.do", IP, Port), xmlData);
+                XmlNode root = response.SelectSingleNode("VTX");
+                string status = root.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+
+                if (status == "200")
+                {
+                    return true;
+                }
+                else
+                {
+                    error = "ErrorCode:" + response.SelectSingleNode("values").SelectSingleNode("result").InnerText;
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+            }
+
+            return false;
+        }
+
     }
 }

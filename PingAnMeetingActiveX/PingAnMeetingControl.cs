@@ -217,6 +217,78 @@ namespace PingAnMeetingActiveX
             return JsonConvert.SerializeObject(response);
         }
 
+        public string AudioControl(int meetingId, string alias, string ip, bool isMute)
+        {
+            string error;
+            ResponseBase response = new ResponseBase();
+            if (ClientServiceFactory.Create().AudioControl(meetingId,  alias,  ip,  isMute, hSession, out error))
+            {
+                response.Result = true;
+            }
+            else
+            {
+                response.Result = false;
+                response.Error = error;
+            }
+            return JsonConvert.SerializeObject(response);
+        }
+
+        public string VTXConfiguration(string IP, int Port, string serverIp, int serverPort, string sipname, string sippassword, int height, int width, int pos_x, int pos_y, string displayname)
+        {
+            string error;
+            ResponseBase response = new ResponseBase();
+            if (ClientServiceFactory.Create().VTXConfiguration(IP, Port, serverIp, serverPort, sipname, sippassword, height, width, pos_x, pos_y, displayname, out error))
+            {
+                response.Result = true;
+            }
+            else
+            {
+                response.Result = false;
+                response.Error = error;
+            }
+            return JsonConvert.SerializeObject(response);
+        }
+
+        public string VTXInit(string IP, int Port, string logLevel)
+        {
+            string error;
+            ResponseBase response = new ResponseBase();
+            try
+            {
+                if (ClientServiceFactory.Create().VTXInit(IP, Port, logLevel, out error))
+                {
+                    response.Result = true;
+                }
+                else
+                {
+                    response.Result = false;
+                    response.Error = error;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Result = false;
+                response.Error = ex.Message;
+            }
+            return JsonConvert.SerializeObject(response);
+        }
+
+        public string VTXChangeVol(string IP, int Port, bool plusAction)
+        {
+            string error;
+            ResponseBase response = new ResponseBase();
+            if (ClientServiceFactory.Create().VTXChangeVol(IP, Port, plusAction, out error))
+            {
+                response.Result = true;
+            }
+            else
+            {
+                response.Result = false;
+                response.Error = error;
+            }
+            return JsonConvert.SerializeObject(response);
+        }
+
         public List<MeetingRoom> GetMeetingRooms(string alias)
         {
             List<MeetingRoom> list = new List<MeetingRoom>();

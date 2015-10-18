@@ -15,19 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_016B6BBD56E767FB4A35B6F7AD43885E"
+        "MsmKey" = "8:_7DF37810B169323B66B5358D4D593970"
         "OwnerKey" = "8:_9CF83F8641484181A8ADDFA8E76EFC8A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3C50139EE8849F19D8EE744434EFF732"
-        "OwnerKey" = "8:_9CF83F8641484181A8ADDFA8E76EFC8A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6F4A7410CFC7910E42F2D79AB52E35D4"
+        "MsmKey" = "8:_8B367320A226E6DF2F7C3EDF4EE3DC9E"
         "OwnerKey" = "8:_9CF83F8641484181A8ADDFA8E76EFC8A"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F798322CC0EE12CB5F50E4756AB02D83"
+        "OwnerKey" = "8:_9CF83F8641484181A8ADDFA8E76EFC8A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9CF83F8641484181A8ADDFA8E76EFC8A"
         "MsmSig" = "8:_UNDEFINED"
@@ -46,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6F4A7410CFC7910E42F2D79AB52E35D4"
+        "OwnerKey" = "8:_F798322CC0EE12CB5F50E4756AB02D83"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_016B6BBD56E767FB4A35B6F7AD43885E"
+        "OwnerKey" = "8:_7DF37810B169323B66B5358D4D593970"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -160,14 +160,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_016B6BBD56E767FB4A35B6F7AD43885E"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7DF37810B169323B66B5358D4D593970"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Cosmoser.PingAnMeetingRequest.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_016B6BBD56E767FB4A35B6F7AD43885E"
+                    "_7DF37810B169323B66B5358D4D593970"
                     {
                     "Name" = "8:Cosmoser.PingAnMeetingRequest.Common.dll"
                     "Attributes" = "3:512"
@@ -191,7 +191,7 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C50139EE8849F19D8EE744434EFF732"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B367320A226E6DF2F7C3EDF4EE3DC9E"
             {
             "SourcePath" = "8:PingAnMeetingActiveX.tlb"
             "TargetName" = "8:PingAnMeetingActiveX.tlb"
@@ -211,14 +211,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F4A7410CFC7910E42F2D79AB52E35D4"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F798322CC0EE12CB5F50E4756AB02D83"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json.Net20, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6F4A7410CFC7910E42F2D79AB52E35D4"
+                    "_F798322CC0EE12CB5F50E4756AB02D83"
                     {
                     "Name" = "8:Newtonsoft.Json.Net20.dll"
                     "Attributes" = "3:512"
@@ -299,7 +299,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PingAnMeetingActiveXSetup"
         "ProductCode" = "8:{05CBAB48-84D7-408E-82AA-B3AA7BD1913E}"
-        "PackageCode" = "8:{66A016A2-6B21-44C5-9918-6155C9B11EF2}"
+        "PackageCode" = "8:{5F75FAA4-054A-4B9D-BCAB-90D73F4609F5}"
         "UpgradeCode" = "8:{CB638704-43B6-41D0-9F4B-54BFB3818CE0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
