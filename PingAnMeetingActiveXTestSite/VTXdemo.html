@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+    <title id="title">ActiveX 控件功能演示</title>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        html, body
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .form-horizontal .control-group
+        {
+            margin-bottom: 16px;
+        }
+        .wrap
+        {
+            height: 218%;
+            display: -webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            overflow: auto;
+        }
+        .main
+        {
+            width: 600px;
+        }
+        .info
+        {
+            margin-bottom: 20px;
+            font-size: 21px;
+            line-height: 40px;
+            color: #333;
+            border: 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+    </style>
+</head>
+<body>
+    <div style="display:none;"><object  id="ActiveObj" classid="clsid:774EB7BE-CFAB-4870-870C-919893780F9E" codebase="PingAnMeetingActiveX.cab#version=1,0,2,0" Width="500" Height="400" ></object></div>
+    <div class="wrap">
+        <form class="main form-horizontal" onsubmit="return check()" action="main/active"
+        onsubmit="return check();">
+        <fieldset>
+            <legend>VTX 配置</legend>
+            <div class="control-group">
+                <label class="control-label">
+                    IP地址</label>
+                <div class="controls">
+                    <input id="txtIP" name="ip" type="text" placeholder="必填项" class="input-xlarge"
+                        required value="192.166.5.100">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    端口号</label>
+                <div class="controls">
+                    <input id="txtPort" type="text" placeholder="填数字，默认为8081" class="input-xlarge" required value="8081">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                   server ip</label>
+                <div class="controls">
+                    <input id="txtserverip" name="id" type="text" class="input-xlarge" value="192.166.3.122"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    server port</label>
+                <div class="controls">
+                    <input id="txtserverport" type="text" class="input-xlarge" required value="5060">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    sipname</label>
+                <div class="controls">
+                    <input id="txtsipname" name="name" type="text" class="input-xlarge" required value="111112"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    sippassword</label>
+                <div class="controls">
+                    <input id="txtsippassword" type="text" class="input-xlarge" value="111112"/>
+                </div>
+            </div>
+            
+             <div class="control-group">
+                <label class="control-label">
+                    displayname</label>
+                <div class="controls">
+                    <input id="txtdisplayname" type="text" class="input-xlarge" value="111112">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    height</label>
+                <div class="controls">
+                    <input id="txtheight" type="text" class="input-xlarge" value="400">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    width</label>
+                <div class="controls">
+                    <input id="txtwidth" type="text" class="input-xlarge" value="400">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    pos x</label>
+                <div class="controls">
+                    <input id="txtposx" type="text" class="input-xlarge" value="50">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                    pos y</label>
+                <div class="controls">
+                    <input id="txtposy" type="text" class="input-xlarge" value="50">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">
+                </label>
+                <div class="controls">
+                    <button class="btn" type="button" id="ok" onclick="VTXConfiguration();">
+                        配置</button>
+                    
+                </div>
+            </div>
+            <legend>VTX 初始化</legend>
+             <div class="control-group">
+                <label class="control-label">
+                    Debug Level</label>
+                <div class="controls">
+                    <input id="txtdebug" name="pwd" type="text" placeholder="可选项" class="input-xlarge"
+                        required value="DEBUG">
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label">
+                </label>
+                <div class="controls">
+                    <button class="btn" type="button" id="btnLogin" onclick="VTXInit();">
+                        初始化</button>   
+                    <label id="lblLogin">
+                    </label>                 
+                </div>
+            </div>
+            <legend>音量控制</legend>
+            <div class="control-group">
+                <label class="control-label">
+                </label>
+                <div class="controls">
+                    <button class="btn" type="button" id="Button1" onclick="AddVolme();">
+                        音量增加</button>
+                    <button class="btn" type="button" id="Button2" onclick="LowVolme();">
+                        音量减少</button>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+    </div>
+    <script>
+
+        function VTXConfiguration() {
+            var txtIP = document.getElementById("txtIP").value;
+            var txtPort = document.getElementById("txtPort").value;
+            var txtserverip = document.getElementById("txtserverip").value;
+            var txtserverport = document.getElementById("txtserverport").value;
+            var txtsipname = document.getElementById("txtsipname").value;
+            var txtsippassword = document.getElementById("txtsippassword").value;
+            var txtdisplayname = document.getElementById("txtdisplayname").value;
+            var txtheight = document.getElementById("txtheight").value;
+            var txtwidth = document.getElementById("txtwidth").value;
+            var txtposx = document.getElementById("txtposx").value;
+            var txtposy = document.getElementById("txtposy").value;
+            var obj = document.getElementById("ActiveObj");
+
+            var json = obj.VTXConfiguration(txtIP, txtPort, txtserverip, txtserverport, txtsipname, txtsippassword, txtheight, txtwidth, txtposx, txtposy, txtdisplayname);
+            alert(json);
+            jsonObj = eval('(' + json + ')');
+        }
+
+        function VTXInit() {
+            var txtIP = document.getElementById("txtIP").value;
+            var txtPort = document.getElementById("txtPort").value;
+            var txtDebug = document.getElementById("txtdebug").value;
+            var obj = document.getElementById("ActiveObj");
+            alert("test")
+            var json = obj.VTXInit(txtIP, txtPort, txtDebug);
+            alert(json);
+            
+        }
+
+        function AddVolme() {
+            var txtIP = document.getElementById("txtIP").value;
+            var txtPort = document.getElementById("txtPort").value;
+            var obj = document.getElementById("ActiveObj");
+
+            var json = obj.VTXChangeVol(txtIP, txtPort, true);
+            alert(json);
+            
+        }
+
+        function LowVolme() {
+            var txtIP = document.getElementById("txtIP").value;
+            var txtPort = document.getElementById("txtPort").value;
+            var obj = document.getElementById("ActiveObj");
+
+            var json = obj.VTXChangeVol(txtIP, txtPort, false);
+            alert(json);
+            
+        }
+
+    </script>
+</body>
+</html>
