@@ -299,7 +299,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PingAnMeetingActiveXSetup"
         "ProductCode" = "8:{05CBAB48-84D7-408E-82AA-B3AA7BD1913E}"
-        "PackageCode" = "8:{5F75FAA4-054A-4B9D-BCAB-90D73F4609F5}"
+        "PackageCode" = "8:{8A21F939-FBE9-4C58-9EAA-1855944EDD5B}"
         "UpgradeCode" = "8:{CB638704-43B6-41D0-9F4B-54BFB3818CE0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
