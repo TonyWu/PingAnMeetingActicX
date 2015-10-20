@@ -273,11 +273,11 @@ namespace PingAnMeetingActiveX
             return JsonConvert.SerializeObject(response);
         }
 
-        public string VTXChangeVol(string IP, int Port, bool plusAction)
+        public string VTXChangeVol(string IP, int Port, int volume)
         {
             string error;
             ResponseBase response = new ResponseBase();
-            if (ClientServiceFactory.Create().VTXChangeVol(IP, Port, plusAction, out error))
+            if (ClientServiceFactory.Create().VTXChangeVol(IP, Port, volume, out error))
             {
                 response.Result = true;
             }

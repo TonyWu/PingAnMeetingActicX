@@ -25,6 +25,6 @@ namespace Cosmoser.PingAnMeetingRequest.Common.Interfaces
         bool AudioControl(int meetingId, string alias, string ip, bool isMute, HandlerSession session, out string error);
         bool VTXConfiguration(string IP, int Port, string serverIp, int serverPort, string sipname, string sippassword, int height, int width, int pos_x, int pos_y, string displayname, out string error);
         bool VTXInit(string IP, int Port, string logLevel, out string error);
-        bool VTXChangeVol(string IP, int Port, bool plusAction, out string error);
+        bool VTXChangeVol(string IP, int Port, int volume, out string error);
     }
 }

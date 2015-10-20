@@ -975,7 +975,7 @@ namespace Cosmoser.PingAnMeetingRequest.Common.ClientService
             return false;
         }
 
-        public bool VTXChangeVol(string IP, int Port, bool plusAction, out string error)
+        public bool VTXChangeVol(string IP, int Port, int volume, out string error)
         {
             error = string.Empty;
             StringBuilder sbXml = new StringBuilder();
@@ -989,7 +989,7 @@ namespace Cosmoser.PingAnMeetingRequest.Common.ClientService
                               </VTX>");
             try
             {
-                string xmlData = string.Format(sbXml.ToString(), plusAction ? "50" : "-50");
+                string xmlData = string.Format(sbXml.ToString(), this.GetVolumPercentage(volume));
                 var response = this._client.DoHttpWebRequest(string.Format("http://{0}:{1}/vtx/chgvol.do", IP, Port), xmlData);
                 XmlNode root = response.SelectSingleNode("VTX");
                 string status = root.SelectSingleNode("values").SelectSingleNode("result").InnerText;
@@ -1012,5 +1012,43 @@ namespace Cosmoser.PingAnMeetingRequest.Common.ClientService
             return false;
         }
 
+        private int GetVolumPercentage(int value)
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            dic.Add(1, 20);
+            dic.Add(2, 29);
+            dic.Add(3, 35);
+            dic.Add(4, 39);
+            dic.Add(5, 42);
+            dic.Add(6, 46);
+            dic.Add(7, 48);
+            dic.Add(8, 50);
+            dic.Add(9, 53);
+            dic.Add(10, 55);
+            dic.Add(11, 56);
+            dic.Add(12, 58);
+            dic.Add(13, 59);
+            dic.Add(14, 61);
+            dic.Add(15, 62);
+            dic.Add(16, 63);
+            dic.Add(17, 64);
+            dic.Add(18, 66);
+            dic.Add(19, 67);
+            dic.Add(20, 68);
+            dic.Add(21, 69);
+            dic.Add(22, 70);
+
+            if (value <= 0) value = 0;
+            else if (value >= 100) value = 100;
+            else if (value > 0 && value < 23) value = dic[value];
+            else if (value >= 23 && value < 29) value = 73;
+            else if (value >= 29 && value < 37) value = 78;
+            else if (value >= 37 && value < 48) value = 83;
+            else if (value >= 48 && value < 61) value = 88;
+            else if (value >= 61 && value < 78) value = 93;
+            else if (value >= 78 && value < 100) value = 98;
+
+            return value;
+        }
     }
 }

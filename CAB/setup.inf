@@ -1,6 +1,6 @@
 ;*** BEGIN **********************************************************
 ;**                                                                **
-;** Automatically generated on: Sun Oct 18 14:26:42 2015           **
+;** Automatically generated on: Tue Oct 20 23:15:46 2015           **
 ;**                                                                **
 ;** MakeCAB Version: 5.1.2600.5512                     **
 ;**                                                                **
@@ -11,9 +11,9 @@
 1,1,PingAnMeetingActiveX.CAB
 [file list]
 1,1,installer.inf,155
-1,1,PingAnMeetingActiveXSetup.msi,645632
+1,1,PingAnMeetingActiveXSetup.msi,646144
 ;*** END ************************************************************
 ;**                                                                **
-;** Automatically generated on: Sun Oct 18 14:26:42 2015           **
+;** Automatically generated on: Tue Oct 20 23:15:46 2015           **
 ;**                                                                **
 ;*** END ************************************************************
